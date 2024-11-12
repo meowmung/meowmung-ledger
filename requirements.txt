@@ -3,4 +3,5 @@ ipython==8.14.0
 openai==0.27.8
 langchain
 langchain-community
-json
+python-dotenv
+PyYAML
