@@ -5,3 +5,4 @@ langchain
 langchain-community
 python-dotenv
 PyYAML
+opencv-contrib-python
