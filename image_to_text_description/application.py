@@ -12,7 +12,7 @@ import json
 import yaml
 import logging
 from dotenv import load_dotenv
-from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
 from base64_multimodal import MultiModal
 
 
@@ -26,7 +26,6 @@ def setup_logging():
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger(__name__)
     return logger
-
 
 def load_environment(logger):
     """
@@ -120,7 +119,7 @@ def main():
     )
 
     # 이미지 경로 설정
-    IMAGE_PATH_FROM_FILE = os.path.join(BASE_DIR, "images", "test_pet_1.jpg")
+    IMAGE_PATH_FROM_FILE = os.path.join(BASE_DIR, "images", "get_pet_2.jpg")
 
     logger.info("이미지 설명 생성 시작.")
 
@@ -133,12 +132,16 @@ def main():
 
     # 문자열을 JSON 객체으로 변환 및 출력
     try:
+        # 응답에서 코드 블록 제거
+        if answer.startswith("```json") and answer.endswith("```"):
+            answer = answer[len("```json"): -len("```")].strip()
         answer_json = json.loads(answer)
         print(json.dumps(answer_json, ensure_ascii=False, indent=4))
         logger.info(f"응답 타입: {type(answer_json)}")
     except json.JSONDecodeError as e:
         logger.error(f"JSON 파싱 오류: {e}")
         print("응답 내용:", answer)
+
 
 
 if __name__ == "__main__":
