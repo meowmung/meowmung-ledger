@@ -120,7 +120,7 @@ def main():
     )
 
     # 이미지 경로 설정
-    IMAGE_PATH_FROM_FILE = os.path.join(BASE_DIR, "images", "test_pet_4.jpg")
+    IMAGE_PATH_FROM_FILE = os.path.join(BASE_DIR, "images", "test_pet_1.jpg")
 
     logger.info("이미지 설명 생성 시작.")
 
