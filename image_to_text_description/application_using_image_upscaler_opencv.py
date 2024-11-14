@@ -15,7 +15,7 @@ import cv2
 from dotenv import load_dotenv
 from langchain_community.chat_models import ChatOpenAI
 from base64_multimodal import MultiModal
-from image_upscaler_opencv.image_upscaler import (
+from preprocessing_image_before_encoding.image_upscaler_opencv.image_upscaler import (
     ImageUpscaler,
 )
 
@@ -107,7 +107,8 @@ def upscale_image(input_image_path, output_image_path, logger):
         SystemExit: OpenCV 오류가 발생한 경우 프로그램을 종료.
     """
     model_path = os.path.join(
-        os.path.dirname(__file__), "image_upscaler_opencv/models/EDSR_x3.pb"
+        os.path.dirname(__file__),
+        "preprocessing_image_before_encoding/image_upscaler_opencv/models/EDSR_x3.pb",
     )
     upscaler = ImageUpscaler(
         model_path=model_path, scale_factor=3, backend="cpu"
