@@ -1,4 +1,4 @@
-# image_upscaler/image_upscaler.py
+# image_upscaler_opencv/image_upscaler.py
 
 import os
 import cv2

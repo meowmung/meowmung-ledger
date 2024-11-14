@@ -27,6 +27,7 @@ def setup_logging():
     logger = logging.getLogger(__name__)
     return logger
 
+
 def load_environment(logger):
     """
     환경 변수를 로드합니다.
@@ -83,7 +84,7 @@ def initialize_llm():
         ChatOpenAI: 초기화된 LLM 객체.
     """
     return ChatOpenAI(
-        temperature=0.1,
+        temperature=0.2,
         model_name="gpt-4o",
     )
 
@@ -134,14 +135,13 @@ def main():
     try:
         # 응답에서 코드 블록 제거
         if answer.startswith("```json") and answer.endswith("```"):
-            answer = answer[len("```json"): -len("```")].strip()
+            answer = answer[len("```json") : -len("```")].strip()
         answer_json = json.loads(answer)
         print(json.dumps(answer_json, ensure_ascii=False, indent=4))
         logger.info(f"응답 타입: {type(answer_json)}")
     except json.JSONDecodeError as e:
         logger.error(f"JSON 파싱 오류: {e}")
         print("응답 내용:", answer)
-
 
 
 if __name__ == "__main__":

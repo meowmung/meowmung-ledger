@@ -1,4 +1,4 @@
-# examples/run_upscaling.py
+# image_upscaler_opencv/test_run_upscaling.py
 
 import os
 from image_upscaler import ImageUpscaler

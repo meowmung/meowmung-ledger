@@ -1,4 +1,4 @@
-# image_upscaler/__init__.py
+# image_upscaler_opencv/__init__.py
 
 from .image_upscaler import ImageUpscaler
 
