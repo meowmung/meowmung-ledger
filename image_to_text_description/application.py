@@ -1,4 +1,4 @@
-# application.py
+# image_to_text_description/application.py
 
 """
 메인 애플리케이션 스크립트.
@@ -30,7 +30,7 @@ def setup_logging():
 
 def load_environment(logger):
     """
-    환경 변수를 로드합니다.
+    환경 변수를 로드하고 OpenAI API 키를 반환합니다.
 
     Args:
         logger (logging.Logger): 로깅 객체.
@@ -95,6 +95,13 @@ def main():
 
     로깅을 설정하고, 환경 변수와 프롬프트 구성을 로드한 후,
     MultiModal 객체를 통해 이미지를 설명하고 결과를 출력합니다.
+
+    Workflow:
+    1. 로깅 설정
+    2. 환경 변수 및 API 키 로드
+    3. 프롬프트 구성 로드
+    4. LLM 및 MultiModal 객체 생성
+    5. 이미지 설명 생성 및 JSON 출력
     """
     # 로깅 설정
     logger = setup_logging()
