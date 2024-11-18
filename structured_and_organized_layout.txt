@@ -1,10 +1,4 @@
 MEOWMUNG-LEDGER/
-├── .env
-├── .gitignore
-├── README.md
-├── requirements.txt
-├── structured_and_organized_layout.txt
-├── testcode.ipynb
 │
 ├── image_to_text_description/
 │   ├── base64_multimodal/
@@ -14,19 +8,11 @@ MEOWMUNG-LEDGER/
 │   │   └── multimodal.py
 │   │
 │   ├── images/
-│   │   ├── get_pet_1.jpg
-│   │   ├── get_pet_2.jpg
-│   │   ├── get_pet_3.jpg
-│   │   ├── get_pet_4.jpg
-│   │   ├── get_pet_5.jpg
-│   │   ├── test_pet_1.jpg
-│   │   ├── test_pet_2.jpg
-│   │   ├── test_pet_3.jpg
-│   │   ├── test_pet_4.jpg
-│   │   └── test_pet_5.jpg
+│   │   └── images * * *
 │   │
 │   ├── preprocessing_image_before_encoder/
 │   │   ├── control_contrast/
+│   │   │   └── (관련 파일 추가 예정)
 │   │   │
 │   │   └── image_upscaler_opencv/
 │   │       ├── __pycache__/
@@ -43,4 +29,10 @@ MEOWMUNG-LEDGER/
 │   ├── application.py
 │   ├── application_using_image_upscaler_opencv.py
 │   ├── prompt_config.yaml
-
+│ 
+├── .env
+├── .gitignore
+├── Explanation_of_the _reason_for_ implementation.ipynb
+├── README.md
+├── requirements.txt
+├── structured_and_organized_layout.txt
