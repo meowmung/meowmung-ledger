@@ -6,3 +6,13 @@ langchain-community
 python-dotenv
 PyYAML
 opencv-contrib-python
+fastapi
+uvicorn
+pydantic
+pydantic[email]
+tortoise-orm
+Pillow
+python-multipart
+aiofiles
+aiomysql
+asyncmy
