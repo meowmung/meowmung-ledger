@@ -1,4 +1,7 @@
 MEOWMUNG-LEDGER/
+
+├──__pycache__/
+├── .github/
 ├── image_to_text_description/
 │   ├── base64_multimodal/
 │   │   ├── __pycache__/
@@ -20,8 +23,8 @@ MEOWMUNG-LEDGER/
 │   │       ├── image_upscaler.py
 │   │       ├── initial_test.py
 │   │       └── test_run_upscaling.py
-│   ├── application_using_image_upscaler_opencv.py
-│   ├── application.py
+│   ├── initial_application_using_image_upscaler_opencv.py
+│   ├── initial_application.py
 │   └── prompt_config.yaml
 │   
 ├── .env
