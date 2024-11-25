@@ -1,4 +1,4 @@
-# image_to_text_description/application.py
+# image_to_text_description/initial_application.py
 
 """
 메인 애플리케이션 스크립트.
@@ -127,7 +127,7 @@ def main():
     )
 
     # 이미지 경로 설정
-    IMAGE_PATH_FROM_FILE = os.path.join(BASE_DIR, "images", "get_pet_4.jpg")
+    IMAGE_PATH_FROM_FILE = os.path.join(BASE_DIR, "images", "get_pet_6.jpg")
 
     logger.info("이미지 설명 생성 시작.")
 

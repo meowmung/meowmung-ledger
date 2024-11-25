@@ -1,4 +1,4 @@
-# image_to_text_description/application_using_image_upscaler_opencv.py
+# image_to_text_description/initial_application_using_image_upscaler_opencv.py
 
 """
 메인 애플리케이션 스크립트.

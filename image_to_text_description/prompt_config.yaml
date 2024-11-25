@@ -6,7 +6,7 @@ prompts:
 
             1. 날짜(Date): 거래가 이루어진 날짜.
             2. 장소(Location): 구매가 이루어진 상점이나 업체의 이름과 위치.
-            3. 상품(Product): 구매한 상품 또는 서비스의 목록.
+            3. 상품(Product): 구매한 상품 목록 각각에 대한 정보(이름, 수량, 가격).
             4. 각 상품의 카테고리(Product Category): 상품 목록에 있는 각각의 상품이 속하는 카테고리.
             5. 금액(Amount): 각 상품의 가격 및 총 금액.
 
@@ -18,6 +18,7 @@ prompts:
         | location        | string     | 영수증에 표시된 장소 또는 매장 이름        |
         | items           | list       | 영수증에 포함된 상품 목록                |
         | items.name      | string     | 각 상품의 이름                        |
+        | items.count     | integer    | 각 상품의 수량                        |
         | items.price     | integer    | 각 상품의 가격                        |
         | items.category  | string     | 각 상품의 카테고리                     |
         | total_amount    | integer    | 영수증의 총 금액                      |
@@ -28,7 +29,7 @@ prompts:
             "date": "YYYY-MM-DD",
             "location": "장소",
             "items": [
-                {"name": "상품명", "price": 금액, "category": "카테고리"},
+                {"name": "상품명", "price": 금액, "count": 해당 상품 구매 갯수, "category": "카테고리"},
                 ...
             ],
             "total_amount": 총금액
@@ -43,16 +44,18 @@ prompts:
             "items": [
                 {
                     "name": "장난감",
-                    "price": 4500,
+                    "price": 13500,
+                    "count": 3,
                     "category": "용품"
                 },
                 {
                     "name": "사료",
                     "price": 70000,
+                    "count": 1,
                     "category": "식비"
                 }
             ],
-            "total_amount": 74500
+            "total_amount": 83500
         }
 
         작업 지침:
@@ -68,7 +71,8 @@ prompts:
             * 기타: 위의 카테고리에 명확히 속하지 않는 경우.
         - items.category 필드는 위에서 나뉜 카테고리 중 하나의 값이어야 합니다: "식비", "미용", "의료", "여가", "용품", "기타"
         - items.name 필드에는 모든 구매한 상품의 정확한 이름이 포함되어야 합니다. 마음대로 누락시키지 마세요.
-        - 금액은 화폐 단위를 표시하지 않고, 무조건 금액에 해당하는 숫자만 적어야 하며, 반드시 자료형은 integer이어야만 합니다.
+        - items.count 필드 값은 대부분 영수증 이미지의 금액에 해당하는 부분 왼쪽에 있습니다. 
+        - 금액은 화폐 단위를 표시하지 않고, 무조건 금액에 해당하는 숫자만 적어야 하며, 반드시 자료형은 integer이어야만 합니다
 
         필드 검증:
 
