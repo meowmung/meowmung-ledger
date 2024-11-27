@@ -11,8 +11,6 @@ MEOWMUNG-LEDGER/
 │   ├── images/
 │   │   └── (테스트한 이미지들이 들어있음)
 │   ├── preprocessing_image_before_encoder/
-│   │   ├── control_contrast/
-│   │   │   └── (관련 파일 추가 예정)
 │   │   └── image_upscaler_opencv/
 │   │       ├── __pycache__/
 │   │       ├── models/
@@ -22,6 +20,7 @@ MEOWMUNG-LEDGER/
 │   │       ├── __init__.py
 │   │       ├── image_upscaler.py
 │   │       ├── initial_test.py
+│   │       ├── optimize_lighting.py
 │   │       └── test_run_upscaling.py
 │   ├── initial_application_using_image_upscaler_opencv.py
 │   ├── initial_application.py
