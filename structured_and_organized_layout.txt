@@ -29,7 +29,9 @@ MEOWMUNG-LEDGER/
 │   
 ├── .env
 ├── .gitignore
-├── application_connect_api.py   
+├── application_connect_api.py 
+├── Docker-compose.yaml
+├── Dockerfile
 ├── Explanation_of_the_reason_for_implementation.ipynb
 ├── README.md
 ├── requirements.txt
