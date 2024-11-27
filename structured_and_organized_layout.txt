@@ -26,10 +26,10 @@ MEOWMUNG-LEDGER/
 │   ├── initial_application.py
 │   └── prompt_config.yaml
 │   
+├── .dockerignore
 ├── .env
 ├── .gitignore
 ├── application_connect_api.py 
-├── Docker-compose.yaml
 ├── Dockerfile
 ├── Explanation_of_the_reason_for_implementation.ipynb
 ├── README.md
