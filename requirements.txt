@@ -16,3 +16,6 @@ python-multipart
 aiofiles
 aiomysql
 asyncmy
+pytest 
+pytest-asyncio 
+httpx 
