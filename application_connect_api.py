@@ -2,6 +2,7 @@
 
 import os
 import logging
+import uuid
 import json
 import yaml
 from fastapi import FastAPI, UploadFile, File, HTTPException
@@ -11,7 +12,6 @@ from langchain_community.chat_models import ChatOpenAI
 from image_to_text_description.base64_multimodal import MultiModal
 import uvicorn
 
-# FastAPI 애플리케이션 초기화
 app = FastAPI()
 
 
@@ -108,10 +108,10 @@ async def process_image(image_file: UploadFile, multimodal_llm_with_prompt):
     """
     업로드된 이미지 파일을 처리하여 구조화된 데이터를 추출하는 함수입니다.
 
-    이 함수는 업로드된 이미지 파일을 임시로 저장한 후,
-    MultiModal 객체를 사용하여 이미지를 처리합니다.
-    처리 결과로 얻은 텍스트를 JSON 형식으로 파싱하여 반환합니다.
-    처리 과정에서 발생하는 오류는 HTTPException으로 처리됩니다.
+    이 함수는 업로드된 이미지 파일을 고유한 이름의 임시 파일로 저장한 후,
+    MultiModal 객체를 사용하여 이미지를 처리합니다. 처리 결과로 얻은 텍스트를
+    JSON 형식으로 파싱하여 반환합니다. 처리 중 예외가 발생할 경우, 적절히 처리하고
+    임시 파일을 삭제합니다.
 
     Args:
         image_file (UploadFile): 업로드된 이미지 파일 객체입니다.
@@ -123,27 +123,27 @@ async def process_image(image_file: UploadFile, multimodal_llm_with_prompt):
     Raises:
         HTTPException: 이미지 처리 중 오류가 발생한 경우 예외를 발생시킵니다.
     """
+    temp_file_path = None
     try:
-        # 이미지 파일의 내용을 비동기로 읽어옵니다.
         contents = await image_file.read()
-        # 임시 파일 경로를 설정합니다.
-        temp_file_path = f"temp_{image_file.filename}"
-        # 이미지를 임시 파일로 저장합니다.
+        temp_file_path = f"temp_{uuid.uuid4().hex}_{image_file.filename}"
+
         with open(temp_file_path, "wb") as f:
             f.write(contents)
-        # 이미지 파일을 처리하여 답변을 얻습니다.
-        answer = multimodal_llm_with_prompt.invoke(temp_file_path)
-        # 임시 파일을 삭제합니다.
-        os.remove(temp_file_path)
-        # 답변에서 코드 블록 표시를 제거합니다.
+        
+
+        answer = multimodal_llm_with_prompt.invoke(temp_file_path)        
         if answer.startswith("```json") and answer.endswith("```"):
-            answer = answer[len("```json") : -len("```")].strip()
-        # 답변을 JSON 형식으로 파싱합니다.
+            answer = answer[len("```json"): -len("```")].strip()
+        
         answer_json = json.loads(answer)
         return answer_json
+    
     except Exception as e:
-        # 오류가 발생하면 HTTPException을 발생시킵니다.
         raise HTTPException(status_code=500, detail=f"이미지 처리 중 오류 발생: {e}")
+    finally:
+        if temp_file_path and os.path.exists(temp_file_path):
+            os.remove(temp_file_path)
 
 
 def combine_json_outputs(json_outputs: List[dict], logger):
@@ -165,14 +165,11 @@ def combine_json_outputs(json_outputs: List[dict], logger):
     """
     combined_data = {"date": None, "location": None, "items": [], "total_amount": None}
     for data in json_outputs:
-        # 날짜와 위치 정보 설정
         if not combined_data["date"] and data.get("date"):
             combined_data["date"] = data["date"]
         if not combined_data["location"] and data.get("location"):
             combined_data["location"] = data["location"]
-        # 아이템 목록 합치기
         combined_data["items"].extend(data.get("items", []))
-        # 총액 업데이트
         if data.get("total_amount"):
             combined_data["total_amount"] = data["total_amount"]
     return combined_data
@@ -197,42 +194,42 @@ async def ledger_receipt(files: List[UploadFile] = File(...)):
         HTTPException: 처리 과정에서 오류가 발생한 경우 예외를 발생시킵니다.
     """
     logger = setup_logging()
-    # 환경 변수에서 OpenAI API 키를 로드합니다.
+    # 환경 변수에서 OpenAI API 키를 로드
     openai_api_key = load_environment(logger)
     os.environ["OPENAI_API_KEY"] = openai_api_key  # OpenAI API 키 설정
 
-    # 프롬프트 구성 파일의 경로를 설정합니다.
+    # 프롬프트 구성 파일의 경로를 설정
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     PROMPT_CONFIG_PATH = os.path.join(
         BASE_DIR, "image_to_text_description", "prompt_config.yaml"
     )
-    # 프롬프트 구성을 로드합니다.
+    # 프롬프트 구성을 로드
     prompt_config = load_prompt_config(PROMPT_CONFIG_PATH, logger)
     system_prompt = prompt_config["prompts"]["system_prompt"]
     user_prompt = prompt_config["prompts"]["user_prompt"]
 
-    # LLM 객체를 초기화합니다.
+    # LLM 객체를 초기화
     llm = initialize_llm()
-    # MultiModal 객체를 초기화합니다.
+    # MultiModal 객체를 초기화
     multimodal_llm_with_prompt = MultiModal(
         llm, system_prompt=system_prompt, user_prompt=user_prompt
     )
 
     json_outputs = []
-    # 각 이미지 파일을 순회하며 처리합니다.
+    # 각 이미지 파일을 순회하며 처리
     for image_file in files:
-        # 이미지 파일을 처리하여 JSON 데이터를 추출합니다.
+        # 이미지 파일을 처리하여 JSON 데이터를 추출
         json_output = await process_image(image_file, multimodal_llm_with_prompt)
         json_outputs.append(json_output)
 
-    # 추출된 JSON 데이터를 병합합니다.
+    # 추출된 JSON 데이터를 병합
     combined_json = combine_json_outputs(json_outputs, logger)
 
     # 결과를 출력합니다.
     print(combined_json)
     print(type(combined_json))
 
-    # 병합된 JSON 데이터를 반환합니다.
+    # 병합된 JSON 데이터를 반환
     return combined_json
 
 
