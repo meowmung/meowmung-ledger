@@ -1,0 +1,11 @@
+# Python 캐시
+__pycache__/
+
+# Docker 관련 파일
+Dockerfile
+docker-compose.yaml
+
+# 기타
+*.git
+*.md
+*.log

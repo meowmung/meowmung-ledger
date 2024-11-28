@@ -1,0 +1,37 @@
+MEOWMUNG-LEDGER/
+
+├──__pycache__/
+├── .github/
+├── image_to_text_description/
+│   ├── base64_multimodal/
+│   │   ├── __pycache__/
+│   │   ├── __init__.py
+│   │   ├── encoder.py
+│   │   └── multimodal.py
+│   ├── images/
+│   │   └── (테스트한 이미지들이 들어있음)
+│   ├── preprocessing_image_before_encoder/
+│   │   └── image_upscaler_opencv/
+│   │       ├── __pycache__/
+│   │       ├── models/
+│   │       │   ├── EDSR_x2.pb
+│   │       │   ├── EDSR_x3.pb
+│   │       │   └── EDSR_x4.pb
+│   │       ├── __init__.py
+│   │       ├── image_upscaler.py
+│   │       ├── initial_test.py
+│   │       ├── optimize_lighting.py
+│   │       └── test_run_upscaling.py
+│   ├── initial_application_using_image_upscaler_opencv.py
+│   ├── initial_application.py
+│   └── prompt_config.yaml
+│   
+├── .dockerignore
+├── .env
+├── .gitignore
+├── application_connect_api.py 
+├── Dockerfile
+├── Explanation_of_the_reason_for_implementation.ipynb
+├── README.md
+├── requirements.txt
+└── structured_and_organized_layout.txt
