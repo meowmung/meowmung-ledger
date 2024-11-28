@@ -24,9 +24,13 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Create .env file
+      - name: Create .env file with API key
         run: |
           echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" > .env
+
+      - name: Check .env file
+        run: |
+          test -f .env && echo ".env file exists" || echo ".env file is missing"
 
       - name: Create prompt_config.yaml
         run: |
