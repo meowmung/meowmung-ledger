@@ -1,7 +1,7 @@
 # image_upscaler_opencv/test_run_upscaling.py
 
 import os
-from image_upscaler import ImageUpscaler
+from .image_upscaler import ImageUpscaler
 
 def main():
     """
