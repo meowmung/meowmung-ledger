@@ -11,8 +11,8 @@ def main():
     # 절대 경로를 사용하여 모델 경로와 이미지 경로 설정
     base_dir = os.path.dirname(os.path.abspath(__file__))  # 현재 파일의 디렉토리 절대 경로
     model_path = os.path.join(base_dir, '../image_upscaler_opencv/models/EDSR_x3.pb')  # 모델의 절대 경로
-    input_image_path = os.path.join(base_dir, '../images/test_pet_1.jpg')  # 업스케일링할 이미지 절대 경로
-    output_image_path = os.path.join(base_dir, '../images/output_image.png')  # 결과 이미지 저장 절대 경로
+    input_image_path = os.path.join(base_dir, '../../images/test_pet_1.jpg')  # 업스케일링할 이미지 절대 경로
+    output_image_path = os.path.join(base_dir, '../../images/output_image.png')  # 결과 이미지 저장 절대 경로
 
     # ImageUpscaler 객체 생성 (Mac 사용자의 경우 MPS 백엔드 사용 가능)
     upscaler = ImageUpscaler(model_path=model_path, scale_factor=3, backend='cpu')
