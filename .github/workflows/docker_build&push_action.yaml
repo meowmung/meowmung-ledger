@@ -33,7 +33,7 @@ jobs:
       - name: Build and push Docker image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
-          image: hyunbinkim00/meowmung-ledger
+          image: hyunbinkim00/docker-meowmung-ledger
           tags: latest
           registry: docker.io
           username: ${{ secrets.DOCKER_USERNAME }}
