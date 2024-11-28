@@ -7,7 +7,6 @@ on:
 permissions:
   contents: read
 
-
 jobs:
   build-and-test:
     strategy:
@@ -17,41 +16,34 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-      # Step 1: Check out the code
       - name: Check out code
         uses: actions/checkout@v4
 
-      # Step 2: Set up Python
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
 
-      # Step 3: Create .env file
       - name: Create .env file
         run: |
-          echo "OPENAI_API_KEY=fake-key-for-testing" > .env
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" > .env
 
-      # Step 4: Ensure prompt_config.yaml exists
-      - name: Ensure prompt_config.yaml exists
+      - name: Create prompt_config.yaml
         run: |
           mkdir -p image_to_text_description
           echo "prompts:\n  system_prompt: Test system prompt\n  user_prompt: Test user prompt" > image_to_text_description/prompt_config.yaml
 
-      # Step 5: Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install flake8 pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      # Step 6: Lint Python code with flake8
       - name: Lint with flake8
         run: |
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-      # Step 7: Run tests with pytest
       - name: Test with pytest
         run: |
           pytest --maxfail=3 --disable-warnings
