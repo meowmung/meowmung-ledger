@@ -9,7 +9,6 @@ on:
   pull_request:
     branches: [ main ]
 
-
 jobs:
   build:
     strategy:
@@ -28,9 +27,8 @@ jobs:
     - name: Build & push Docker image
       uses: mr-smithers-excellent/docker-build-push@v5
       with:
-        image: 본인의 도커 아이디/도커 허브의 Repository 이름
-		          # mhso0129/github-actions-push
-        tags: v3, latest, gamja, goguma
+        image: hyunbinkim00/meowmung-ledger
+        tags: latest
         registry: docker.io
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
