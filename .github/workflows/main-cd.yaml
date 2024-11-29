@@ -1,6 +1,5 @@
-#main 브랜치에서 Docker 이미지 빌드 및 푸시: 안정적인 코드 기반으로 Docker 이미지를 자동으로 빌드하고 Docker Hub에 푸시
-
-name: Dev CD Workflow
+#main 브랜치에서 Docker 이미지 빌드 및 푸시
+name: Docker Build & Push Action
 
 on:
   push:
