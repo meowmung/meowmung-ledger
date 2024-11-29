@@ -1,3 +1,6 @@
+# dev 브랜치에 기본 CI 워크플로우 설정: 코드의 빌드와 테스트를 자동화하여 코드의 안정성을 확보
+# 코드 검증 후 main 브랜치로 머지하기 위함(dev 브랜치에서 문제가 없는 코드를 main 브랜치로 머지)
+
 name: Dev CI Workflow
 
 on:
@@ -24,13 +27,8 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Create .env file with API key
-        run: |
-          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" > .env
-
-      - name: Check .env file
-        run: |
-          test -f .env && echo ".env file exists" || echo ".env file is missing"
+      - name: Set environment variable
+        run: echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
 
       - name: Create prompt_config.yaml
         run: |
