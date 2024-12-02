@@ -1,15 +1,23 @@
 MEOWMUNG-LEDGER/
 
-├──__pycache__/
+├── __pycache__/
+│  
 ├── .github/
+│   ├── workflows/
+│   │     └── docker_build_&_push_action.yaml
+│   └── PULL_REQUEST_TEMPLATE.md
+│  
 ├── image_to_text_description/
+│   │
 │   ├── base64_multimodal/
 │   │   ├── __pycache__/
 │   │   ├── __init__.py
 │   │   ├── encoder.py
 │   │   └── multimodal.py
+│   │
 │   ├── images/
 │   │   └── (테스트한 이미지들이 들어있음)
+│   │
 │   ├── preprocessing_image_before_encoder/
 │   │   └── image_upscaler_opencv/
 │   │       ├── __pycache__/
@@ -22,6 +30,7 @@ MEOWMUNG-LEDGER/
 │   │       ├── initial_test.py
 │   │       ├── optimize_lighting.py
 │   │       └── test_run_upscaling.py
+│   │
 │   ├── initial_application_using_image_upscaler_opencv.py
 │   ├── initial_application.py
 │   └── prompt_config.yaml
