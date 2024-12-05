@@ -4,8 +4,6 @@ name: Docker Build & Push Action
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   build:
