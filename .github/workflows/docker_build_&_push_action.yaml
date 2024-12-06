@@ -1,4 +1,5 @@
 # main 브랜치에서 Docker 이미지 빌드 및 푸시
+  # 이로써 코드 배포 자동화 가능(CD)
 name: Docker Build & Push Action
 
 on:
