@@ -1,4 +1,4 @@
-# application_connect_api.py
+# application_connect_RESTful_API.py
 
 import os
 import logging
@@ -8,7 +8,7 @@ import yaml
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from typing import List
 from dotenv import load_dotenv
-from langchain_community.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from image_to_text_description.base64_multimodal import MultiModal
 import uvicorn
 
@@ -235,4 +235,4 @@ async def ledger_receipt(files: List[UploadFile] = File(...)):
 
 # 애플리케이션 실행 (직접 실행 시)
 if __name__ == "__main__":
-    uvicorn.run("application_connect_api:app", host="0.0.0.0", port=8085)
+    uvicorn.run("application_connect_RESTful_API:app", host="0.0.0.0", port=8085)
