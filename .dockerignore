@@ -4,6 +4,7 @@ __pycache__/
 # Docker 관련 파일
 Dockerfile
 docker-compose.yaml
+.env
 
 # 기타
 *.git
