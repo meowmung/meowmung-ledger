@@ -1,4 +1,4 @@
-# image_upscaler_opencv/test_run_upscaling.py
+# image_to_text_description/preprocessing_image_before_encoding/image_upscaler_opencv/test_run_upscaling.py
 
 import os
 from .image_upscaler import ImageUpscaler

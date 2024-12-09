@@ -1,4 +1,4 @@
-# base64_multimodal/encoder.py
+# image_to_text_description/base64_multimodal/encoder.py
 
 """
 ImageEncoder 클래스 모듈.

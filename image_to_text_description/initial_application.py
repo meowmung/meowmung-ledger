@@ -12,7 +12,7 @@ import json
 import yaml
 import logging
 from dotenv import load_dotenv
-from langchain_community.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from base64_multimodal import MultiModal
 
 

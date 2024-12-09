@@ -4,10 +4,15 @@ MEOWMUNG-LEDGER/
 │  
 ├── .github/
 │   ├── workflows/
-│   │     └── docker_build_&_push_action.yaml
+│   │     └── CD_docker_build_&_push_action.yaml
+│   │     └── CI_test_application_core_features.yaml
 │   └── PULL_REQUEST_TEMPLATE.md
 │  
+├── .pytest_cache
+│  
 ├── image_to_text_description/
+│   │
+│   ├──__pycache__
 │   │
 │   ├── base64_multimodal/
 │   │   ├── __pycache__/
@@ -38,9 +43,12 @@ MEOWMUNG-LEDGER/
 ├── .dockerignore
 ├── .env
 ├── .gitignore
-├── application_connect_api.py 
+├── application_connect_gRPC_API.py
+├── application_connect_RESTful_API.py
 ├── Dockerfile
-├── Explanation_of_the_reason_for_implementation.ipynb
+├── Explanation_of_service_flow.txt
+├── Explanation_of_the _reason_for_using_MultiModal.ipynb
 ├── README.md
 ├── requirements.txt
-└── structured_and_organized_layout.txt
+├── structured_and_organized_layout.txt
+└── test_application_core_feature.py

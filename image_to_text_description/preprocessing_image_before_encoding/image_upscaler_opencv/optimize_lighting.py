@@ -1,5 +1,6 @@
-import cv2
+# image_to_text_description/preprocessing_image_before_encoding/image_upscaler_opencv/optimize_lighting.py
 
+import cv2
 
 def optimize_lighting(image_path):
     """

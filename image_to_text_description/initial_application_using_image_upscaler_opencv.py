@@ -13,7 +13,7 @@ import yaml
 import logging
 import cv2
 from dotenv import load_dotenv
-from langchain_community.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from base64_multimodal import MultiModal
 from preprocessing_image_before_encoding.image_upscaler_opencv.image_upscaler import (
     ImageUpscaler,

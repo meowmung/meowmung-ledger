@@ -1,8 +1,11 @@
-requests==2.31.0
-ipython==8.14.0
-openai==0.27.8
-langchain>=0.3.8,<0.4.0
-langchain-community==0.3.8
+# requirements.txt
+
+requests
+ipython
+openai
+langchain
+langchain-community
+langchain-openai
 python-dotenv
 PyYAML
 opencv-contrib-python
@@ -18,4 +21,6 @@ aiomysql
 asyncmy
 pytest 
 pytest-asyncio 
+pytest-mock 
+python-dotenv
 httpx 
