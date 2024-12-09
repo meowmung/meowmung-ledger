@@ -1,4 +1,4 @@
-# base64_multimodal/multimodal.py
+# image_to_text_description/base64_multimodal/multimodal.py
 
 """
 MultiModal 클래스 모듈.

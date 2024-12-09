@@ -1,4 +1,4 @@
-# image_upscaler_opencv/image_upscaler.py
+# image_to_text_description/preprocessing_image_before_encoding/image_upscaler_opencv/image_upscaler.py
 
 import os
 import cv2

@@ -1,4 +1,4 @@
-# base64_multimodal/__init__.py
+# image_to_text_description/base64_multimodal/__init__.py
 
 """
 base64_multimodal 패키지 초기화 모듈.
