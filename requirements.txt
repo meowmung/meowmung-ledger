@@ -24,3 +24,6 @@ pytest-asyncio
 pytest-mock 
 python-dotenv
 httpx 
+grpcio 
+grpcio-tools
+protobuf
