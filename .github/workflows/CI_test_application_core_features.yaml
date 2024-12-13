@@ -1,12 +1,12 @@
 # .github/workflows/CI_test_application_core_features.yaml
 
-# dev 브랜치에 Push 시 테스트 코드 실행 자동화로 안정성 검증
+# main 브랜치에 Pull Request 시 테스트 코드 실행 자동화로 안정성 검증
   # 이로써 코드 테스트 자동화 가능(CI)
 name: Test Application Core Features
 
 on:
   pull_request:
-    branches: [ dev ] 
+    branches: [ main ] 
 
 permissions:
   contents: read
