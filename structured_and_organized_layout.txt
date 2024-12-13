@@ -8,7 +8,7 @@ MEOWMUNG-LEDGER/
 │   │     └── CI_test_application_core_features.yaml
 │   └── PULL_REQUEST_TEMPLATE.md
 │  
-├── .pytest_cache
+├── .pytest_cache/
 │  
 ├── image_to_text_description/
 │   │
@@ -41,6 +41,7 @@ MEOWMUNG-LEDGER/
 │   └── prompt_config.yaml
 │
 ├── proto/
+│   ├── __pycache__/
 │   ├── __init__.py
 │   ├── ledger_pb2_grpc.py
 │   ├── ledger_pb2.py

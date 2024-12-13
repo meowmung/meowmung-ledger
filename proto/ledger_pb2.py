@@ -24,21 +24,17 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0cledger.proto\x12\x06ledger\"$\n\x0eReceiptRequest\x12\x12\n\nimage_data\x18\x01 \x01(\x0c\"&\n\x0fReceiptResponse\x12\x13\n\x0bjson_output\x18\x01 \x01(\t\"%\n\x0fReceiptsRequest\x12\x12\n\nimage_data\x18\x01 \x03(\x0c\"\'\n\x10ReceiptsResponse\x12\x13\n\x0bjson_output\x18\x01 \x01(\t2\x98\x01\n\rLedgerService\x12\x41\n\x0eProcessReceipt\x12\x16.ledger.ReceiptRequest\x1a\x17.ledger.ReceiptResponse\x12\x44\n\x0fProcessReceipts\x12\x17.ledger.ReceiptsRequest\x1a\x18.ledger.ReceiptsResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0cledger.proto\x12\x06ledger\"%\n\x0fReceiptsRequest\x12\x12\n\nimage_data\x18\x01 \x03(\x0c\"\'\n\x10ReceiptsResponse\x12\x13\n\x0bjson_output\x18\x01 \x01(\t2U\n\rLedgerService\x12\x44\n\x0fProcessReceipts\x12\x17.ledger.ReceiptsRequest\x1a\x18.ledger.ReceiptsResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'ledger_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
-  _globals['_RECEIPTREQUEST']._serialized_start=24
-  _globals['_RECEIPTREQUEST']._serialized_end=60
-  _globals['_RECEIPTRESPONSE']._serialized_start=62
-  _globals['_RECEIPTRESPONSE']._serialized_end=100
-  _globals['_RECEIPTSREQUEST']._serialized_start=102
-  _globals['_RECEIPTSREQUEST']._serialized_end=139
-  _globals['_RECEIPTSRESPONSE']._serialized_start=141
-  _globals['_RECEIPTSRESPONSE']._serialized_end=180
-  _globals['_LEDGERSERVICE']._serialized_start=183
-  _globals['_LEDGERSERVICE']._serialized_end=335
+  _globals['_RECEIPTSREQUEST']._serialized_start=24
+  _globals['_RECEIPTSREQUEST']._serialized_end=61
+  _globals['_RECEIPTSRESPONSE']._serialized_start=63
+  _globals['_RECEIPTSRESPONSE']._serialized_end=102
+  _globals['_LEDGERSERVICE']._serialized_start=104
+  _globals['_LEDGERSERVICE']._serialized_end=189
 # @@protoc_insertion_point(module_scope)

@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-import proto.ledger_pb2 as ledger__pb2
+from . import ledger_pb2 as ledger__pb2
 
 GRPC_GENERATED_VERSION = '1.68.1'
 GRPC_VERSION = grpc.__version__
@@ -34,11 +34,6 @@ class LedgerServiceStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.ProcessReceipt = channel.unary_unary(
-                '/ledger.LedgerService/ProcessReceipt',
-                request_serializer=ledger__pb2.ReceiptRequest.SerializeToString,
-                response_deserializer=ledger__pb2.ReceiptResponse.FromString,
-                _registered_method=True)
         self.ProcessReceipts = channel.unary_unary(
                 '/ledger.LedgerService/ProcessReceipts',
                 request_serializer=ledger__pb2.ReceiptsRequest.SerializeToString,
@@ -49,12 +44,6 @@ class LedgerServiceStub(object):
 class LedgerServiceServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def ProcessReceipt(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
     def ProcessReceipts(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -64,11 +53,6 @@ class LedgerServiceServicer(object):
 
 def add_LedgerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'ProcessReceipt': grpc.unary_unary_rpc_method_handler(
-                    servicer.ProcessReceipt,
-                    request_deserializer=ledger__pb2.ReceiptRequest.FromString,
-                    response_serializer=ledger__pb2.ReceiptResponse.SerializeToString,
-            ),
             'ProcessReceipts': grpc.unary_unary_rpc_method_handler(
                     servicer.ProcessReceipts,
                     request_deserializer=ledger__pb2.ReceiptsRequest.FromString,
@@ -84,33 +68,6 @@ def add_LedgerServiceServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class LedgerService(object):
     """Missing associated documentation comment in .proto file."""
-
-    @staticmethod
-    def ProcessReceipt(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/ledger.LedgerService/ProcessReceipt',
-            ledger__pb2.ReceiptRequest.SerializeToString,
-            ledger__pb2.ReceiptResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
 
     @staticmethod
     def ProcessReceipts(request,

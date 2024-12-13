@@ -3,22 +3,13 @@ syntax = "proto3";
 package ledger;
 
 service LedgerService {
-  rpc ProcessReceipt (ReceiptRequest) returns (ReceiptResponse);
-  rpc ProcessReceipts (ReceiptsRequest) returns (ReceiptsResponse);
-}
-
-message ReceiptRequest {
-  bytes image_data = 1;
-}
-
-message ReceiptResponse {
-  string json_output = 1;
+    rpc ProcessReceipts (ReceiptsRequest) returns (ReceiptsResponse);
 }
 
 message ReceiptsRequest {
-  repeated bytes image_data = 1;
+    repeated bytes image_data = 1;
 }
 
 message ReceiptsResponse {
-  string json_output = 1;
+    string json_output = 1;
 }
