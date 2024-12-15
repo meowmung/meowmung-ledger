@@ -17,7 +17,7 @@ import asyncio  # 비동기 처리를 위한 모듈
 import requests
 from requests_aws4auth import AWS4Auth
 
-app = FastAPI()
+app = FastAPI(root_path="/ml")
 
 
 # 로깅 설정 초기화 (모듈 초기화 시점에 한 번만 설정)
