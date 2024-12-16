@@ -344,6 +344,10 @@ async def ledger_receipt(urls: ImageURLs):
     logger.info(f"결합된 JSON: {combined_json}")
     return combined_json
 
+@app.on_event("shutdown")
+async def shutdown_event():
+    print("Shutting down gracefully...")
+    # 여기에 종료 시 리소스 해제 로직 추가
 
 # 애플리케이션 실행 (직접 실행 시)
 if __name__ == "__main__":
