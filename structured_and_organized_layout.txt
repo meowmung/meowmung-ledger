@@ -54,7 +54,7 @@ MEOWMUNG-LEDGER/
 ├── application_connect_RESTful_API.py
 ├── application_gRPC_client_test.py
 ├── Dockerfile
-├── Explanation_of_service_flow.txt 
+├── Explanation_of_service.txt
 ├── Explanation_of_the _reason_for_using_MultiModal.ipynb
 ├── README.md
 ├── requirements.txt
