@@ -259,4 +259,10 @@ Docker 이미지 빌드 및 푸시 자동화 workflow
         - 이 파일들을 바탕으로 AWS EKS(Elastic Kubernetes Service: AWS에서 제공하는 쿠버네티스 관리 서비스)를 사용해 애플리케이션을 배포
             (개별 컨테이너를 쿠버네티스가 알아서 배포하고 관리하도록 함)
 
-        - AWS CLI를 통한 서비스 관리 
+        - AWS CLI를 통한 서비스 관리
+    
+    f. 모니터링 시스템 구축
+
+        - Helm을 활용한 Prometheus 및 Grafana 기반 모니터링 시스템 구성
+        - EKS의 컴퓨팅 리소스와 네트워크 상태에 대한 주요 메트릭 모니터링
+        - 사전 정의된 Grafana 대시보드를 포함한 Helm Chart를 활용해 Kubernetes 클러스터 상태 시각화
