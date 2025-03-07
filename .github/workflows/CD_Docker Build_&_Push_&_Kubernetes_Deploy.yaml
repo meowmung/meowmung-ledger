@@ -1,0 +1,91 @@
+# .github/workflows/CD_Docker Build_&_Push_&_Kubernetes_Deploy.yaml
+
+# main 브랜치 Push 시 Docker 허브에 이미지 빌드 및 푸시 & EKS 클러스터에 자동 배포
+  # 이로써 코드 배포 자동화 가능(CD)
+name: Docker Build & Push & Kubernetes Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v5
+        with:
+          image: hyunbinkim00/docker-meowmung-ledger
+          tags: latest
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+
+  # deploy:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v3
+
+  #     - name: Configure AWS credentials   # GitHub Secrets에서 설정한 AWS EKS 인증 정보로 GitHub Actions에서 AWS IAM 인증
+  #       uses: aws-actions/configure-aws-credentials@v2
+  #       with:
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: ${{ secrets.AWS_REGION }}
+
+  #     - name: Set up kubectl
+  #       uses: azure/setup-kubectl@v3
+  #       with:
+  #         version: "latest"
+
+  #     - name: Authenticate with AWS EKS   # GitHub Secrets에서 설정한 KUBECONFIG로 GitHub Actions에서 쿠버네티스 클러스터에 연결
+  #       run: |
+  #         aws eks update-kubeconfig --name ${{ secrets.EKS_CLUSTER_NAME }} --region ${{ secrets.AWS_REGION }}
+
+
+  #     - name: Deploy new Docker image to AWS EKS
+  #       run: |
+  #         set -e    
+  #         echo "최신 DockerHub이미지로 쿠버네티스 배포 시작"
+  #         kubectl set image deployment/docker-meowmung-ledger docker-meowmung-ledger=hyunbinkim00/docker-meowmung-ledger:latest --namespace=default
+          
+  #         echo "롤링 업데이트 상태 확인"
+  #         if ! kubectl rollout status deployment/docker-meowmung-ledger --namespace=default; then
+  #           echo "배포 실패 - 이전 버전으로 롤백"
+  #           kubectl rollout undo deployment/docker-meowmung-ledger --namespace=default
+  #           exit 1 
+  #         fi
+
+  #     # set -e: 스크립트 실행 중 오류 발생 시 즉시 중단
+  #     # exit 1: GitHub Actions에서 실패 상태 반환
+      
+  #     # 재배포 시 기존에 설정한 Deployment 설정(Replicas, Environment Variables, Volume Mounts 등), Pod 개수(ReplicaSet), Service는 유지
+          
+  #         # Pod의 개수(ReplicaSet)는 유지한 채 새로운 이미지로 교체 
+          
+  #         # Service는 기존 Deployment의 새로운 Pod들을 자동으로 트래픽에 연결
+  #         # 서비스의 ClusterIP, LoadBalancer IP, External IP, Ingress 설정은 변경되지 않음 (기존 애플리케이션 사용자는 별다른 변경 없이 최신 버전을 이용 가능)
+      
+  #     # 롤링 업데이트(Rolling Update) 방식으로 진행: 서비스 중단 없이 새로운 Pod를 생성하면서 배포
+  #         # kubectl rollout status는 업데이트가 성공적으로 완료될 때까지 대기
+  #         # 만약 배포가 실패하면 자동으로 이전 버전으로 롤백
